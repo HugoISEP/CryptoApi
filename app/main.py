@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.configuration.Configuration import Configuration
 from app.services.CryptoOrdersService import CryptoOrdersService
 from app.services.TradingBotService import TradingBotService
 
@@ -20,5 +21,6 @@ def get_orders_history():
 
 @app.get("/bot/{id}/status")
 def get_status():
-    bot_service = TradingBotService("http://localhost:8000/")
+    conf = Configuration()
+    bot_service = TradingBotService(conf.bot_base_url)
     return bot_service.get_status()
