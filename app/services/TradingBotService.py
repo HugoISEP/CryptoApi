@@ -1,6 +1,9 @@
 from typing import Optional, Dict, Any, List
 
+from pydantic import parse_obj_as
 from requests import Request, Session, Response
+
+from app.models.FtxBalance import FtxBalance
 
 
 class TradingBotService:
@@ -41,7 +44,11 @@ class TradingBotService:
             return data
 
     def get_status(self) -> str:
-        return self._get('status')
+        return self._get("status")
 
     def get_markets(self) -> List[str]:
-        return self._get('markets')
+        return self._get("markets")
+
+    def get_balances(self) -> List[FtxBalance]:
+        result = self._get("balances")
+        return parse_obj_as(List[FtxBalance], result)
