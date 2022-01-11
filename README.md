@@ -5,6 +5,9 @@
 ```
 [DEFAULT]
 bot_base_url = <YOUR_BOT_BASE_URL>
+[AUTHENTICATION]
+API_KEY = <YOUR_API_KEYL>
+API_KEY_NAME = <YOUR_API_KEY_NAME>
 ```
 
 ## launch the project

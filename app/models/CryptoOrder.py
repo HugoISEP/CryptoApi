@@ -8,7 +8,6 @@ class CryptoOrder(BaseModel):
     id: str
     clientId: Optional[str]
     market: str
-    market: str
     side: str
     price: Optional[float]
     size: float
