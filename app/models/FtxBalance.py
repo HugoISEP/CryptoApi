@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class FtxBalance(BaseModel):
     coin: str
-    total = float
+    total: float
     free: float
     availableWithoutBorrow: float
     usdValue: float
