@@ -6,8 +6,10 @@ from starlette.responses import JSONResponse
 from app.configuration.Configuration import Configuration
 from app.models.CryptoOrder import CryptoOrder
 from app.models.FtxBalance import FtxBalance
+from app.models.Notification import Notification
 from app.security.ApiKeyAuthentication import get_api_key
 from app.services.Ftx import Ftx
+from app.services.NotificationService import NotificationService
 from app.services.TradingBotService import TradingBotService
 from fastapi import Depends, FastAPI
 from fastapi.security.api_key import APIKey
@@ -60,3 +62,10 @@ async def get_bot_orders_history(api_key: APIKey = Depends(get_api_key),
     ftx = Ftx()
     result = ftx.get_orders_history(market, side, order_type, start_time, end_time)
     return result
+
+
+@app.post("/notification")
+async def notification(notif: Notification, api_key: APIKey = Depends(get_api_key)):
+    service = NotificationService()
+    return service.send_notification(notif)
+
